@@ -1,0 +1,133 @@
+.background-day {
+  background: url('dayTimePalmBackDrop.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.background-night {
+  background: url('nightSkylineBackDrop.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
+h1 {
+  text-align: center;
+  margin-top: 200px;
+  font-weight: bold;
+  color: black;
+
+
+}
+
+#input-area {
+  text-align: center;
+  margin-top: 100px;
+}
+#buttons {
+margin-left: 0px;
+padding-left: 0px;
+}
+
+.buttons {
+margin: 8px;
+height: 170px;
+width: 200px;
+}
+/* this is the picture attribute */
+.inspo-pics {
+  height: 100px;
+  padding:0px;
+  display: inline;
+  padding-left: 25vw;
+}
+
+.textBox {
+  text-align: center;
+  padding-left: 10vw;
+  padding-right: 20vw;
+  font-size: 50px;
+}
+
+.inspoSubButtons {
+  color: black;
+  padding-left: 26vw;
+  padding-top: 15vw;
+  padding-bottom: 5vw;
+}
+
+button {
+  background-color: black;
+  color: white;
+}
+
+button:hover {
+  text-shadow: 3px 3px 3px  white;
+  box-shadow: 3px 3px 5px silver;
+
+}
+
+.side-button {
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+
+#dayInspo , #nightInspo {
+  margin: 20px;
+  height: 100px;
+  width: 15vw;
+  float: left;
+  font-weight: lighter;
+  color: white;
+  font-size: 30px;
+
+}
+
+.dayNightInspoButtons{
+
+}
+
+.main-content {
+  height: 100vh;
+  padding-top: 12vh;
+}
+
+.newButtonStyle {
+  width: 200px;
+}
+
+#salsa ,
+#intersectioncurly ,
+#windowcute ,
+#flowerbush,
+#basketballshorty ,
+#coolcat, #snoopdog ,
+#sassypants, #okay, #giantcutie,
+#baddie {
+  height: 300px;
+}
+
+form {
+  padding-top: 5vw;
+  padding-left: 33vw;
+}
+
+.newBody {
+  background: url('closetGif.gif') no-repeat center center fixed;
+
+}
+
+#secDay:hover, #secNight:hover {
+  box-shadow: none;
+  text-shadow: 2px 2px 2px white;
+}
+
+/* .carousel-inner {
+  pause: 'hover'
+} */
