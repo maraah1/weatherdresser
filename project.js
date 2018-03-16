@@ -7,10 +7,43 @@ var nightPics = document.querySelector('.night_inspoPics')
 //console.log(nightPics)
 
 
+let cities = {
+  "new_york": {
+    lat: 40.7128,
+    lng: 74.0060
+  },
+  "phoenix": {
+    lat: 33.4484,
+    lng: 112.0740
+  },
+  "denver": {
+    lat: 39.7392,
+    lng: 104.9903
+  },
+  "hawaii": {
+    lat: 19.8968,
+    lng: 155.5828
+  },
+  "paris": {
+    lat: 48.8566,
+    lng: 2.3522
+  },
+  "chiang_mai": {
+    lat: 18.7061,
+    lng: 98.9817
+  }
+}
+
+
 
 var name = window.location.search.split('?')[1].split('&')[0].split('=')[1]
-var latitude = window.location.search.split('?')[1].split('&')[1].split('=')[1]
-var longitude = window.location.search.split('?')[1].split('&')[2].split('=')[1]
+var incoming_city = window.location.search.split('?')[1].split('&')[1].split('=')[1].toLowerCase()
+var parsed_city = incoming_city.replace(/\+/ig, "_");
+
+console.log("parsed_city is " + parsed_city);
+var latitude = cities[parsed_city].lat
+var longitude = cities[parsed_city].lng
+
 //localStorage.setItem("longitude", longitude);
 /// you can then retrieve it on any page using localStorage.getItem("longitude")
 dayInspoButton.style.display = "none"
