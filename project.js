@@ -4,35 +4,44 @@ var secondDayButton = document.querySelector('button[name="secondDayButton"]')
 var secondNightButton = document.querySelector('button[name="secondNightButton"]')
 var dayPics = document.querySelector('.day_inspoPics')
 var nightPics = document.querySelector('.night_inspoPics')
-//console.log(nightPics)
-
 
 let cities = {
   "new_york": {
     lat: 40.7128,
-    lng: 74.0060
+    lng: 74.0060,
+    state: "NY"
   },
   "phoenix": {
     lat: 33.4484,
-    lng: 112.0740
+    lng: 112.0740,
+    state: "AZ"
   },
   "denver": {
     lat: 39.7392,
-    lng: 104.9903
+    lng: 104.9903,
+    state: "CO"
   },
-  "hawaii": {
-    lat: 19.8968,
-    lng: 155.5828
+  "honolulu": {
+    lat: 21.3069,
+    lng: 157.8583,
+    state: "HI"
   },
   "paris": {
     lat: 48.8566,
-    lng: 2.3522
+    lng: 2.3522,
+    state: "FR"
   },
   "chiang_mai": {
     lat: 18.7061,
-    lng: 98.9817
+    lng: 98.9817,
+    state: "TH"
+  },
+  "los_angeles": {
+    lat: 34.0522,
+    lng: 118.2437,
+    state: "CA"
   }
-}
+};
 
 
 
@@ -40,60 +49,57 @@ var name = window.location.search.split('?')[1].split('&')[0].split('=')[1]
 var incoming_city = window.location.search.split('?')[1].split('&')[1].split('=')[1].toLowerCase()
 var parsed_city = incoming_city.replace(/\+/ig, "_");
 
-console.log("parsed_city is " + parsed_city);
 var latitude = cities[parsed_city].lat
 var longitude = cities[parsed_city].lng
+var state = cities[parsed_city].state
 
-//localStorage.setItem("longitude", longitude);
-/// you can then retrieve it on any page using localStorage.getItem("longitude")
+
 dayInspoButton.style.display = "none"
 nightInspoButton.style.display = "none"
 dayPics.style.display = "none"
 nightPics.style.display = "none"
 secondNightButton.style.display = "none"
 secondDayButton.style.display = "none"
-//mainContent.style.backgroundColor = "white"
 
 fetchApi()
 
 function calcDay(coordinates) {
   var dailyData = coordinates['hourly']['data']
-  //console.log(dailyData)
+
   const currentTimeInHours = new Date(dailyData[0].time * 1000).getHours();
-  //console.log(currentTimeInHours)
+
   const hoursUntilDay = (6 - currentTimeInHours + 1)
-  //console.log(hoursUntilDay)
+
   const dayCalc = 24 + hoursUntilDay
 
   return dayCalc;
-  //console.log(dayCalc);
+
 }
 
 function calcNight(coordinates) {
   var dailyData = coordinates['hourly']['data']
-  //console.log(dailyData)
+
   const currentTimeInHours = new Date(dailyData[0].time * 1000).getHours();
-  //console.log(currentTimeInHours)
+
   const hoursUntilDay = 19 - currentTimeInHours
-  //console.log(hoursUntilDay)
+
+
   const nightCalc = currentTimeInHours + hoursUntilDay
 
   return nightCalc;
-  console.log(nightCalc);
+
 }
 
 function calcNow(coordinates) {
   var dailyData = coordinates['hourly']['data']
-  //console.log(dailyData)
+
   const currentTimeInHours = new Date(dailyData[0].time * 1000).getHours();
-  //console.log(currentTimeInHours)
 
   return currentTimeInHours;
 }
 
 var phrase = ''
 var textBox = document.querySelector('.textBox')
-// textBox.innerHTML = `${phrase}! <br> I suggest wearing a heavy jacket. kjfnka fawkheufh weauhrwe iuhrweiuhriwuehi weirhi ehrieuh iuerhi ueheuh dkajf kahfk kafha kahfkawh ake alkfhuae kaj`
 
 
 function fetchApi(type) {
@@ -134,18 +140,20 @@ function fetchApi(type) {
     })
 
 }
+var textBox2 = document.querySelector('.textBox2')
 
-// jQuery(document).ready(function($) {
-//   $.ajax({
-//     url: "http://api.wunderground.com/api/6cda0e3f3058e59b/geolookup/conditions/q/IA/Cedar_Rapids.json",
-//     dataType: "jsonp",
-//     success: function(parsed_json) {
-//       var location = parsed_json['location']['city'];
-//       var temp_f = parsed_json['current_observation']['temp_f'];
-//       alert("Current temperature in " + location + " is: " + temp_f);
-//     }
-//   });
-// });
+jQuery(document).ready(function($) {
+  $.ajax({
+    url: "http://api.wunderground.com/api/6cda0e3f3058e59b/geolookup/conditions/q/" +
+      state + "/" + parsed_city + ".json",
+    dataType: "jsonp",
+    success: function(parsed_json) {
+      var location = parsed_json['location']['city'];
+      var temp_f = parsed_json['current_observation']['temp_f'];
+      textBox2.innerHTML = "Current temperature in " + location + " is: " + temp_f + "F"
+    }
+  });
+});
 
 
 
@@ -153,35 +161,33 @@ var dayButton = document.querySelector('button[name="dayButton"]')
 
 dayButton.addEventListener('click', function() {
   fetchApi("day")
-  //document.body.classList.add('background-day')
-  //mainContent.style.backgroundColor = "red"
+
 })
 
 
 var nightButton = document.querySelector('button[name="nightButton"]')
-//console.log(nightButton)
 
 nightButton.addEventListener('click', function() {
   fetchApi("night")
-  //document.body.classList.add('background-night')
-
 
 })
 
 var styleHoroButton = document.querySelector('button[name="horoButton"]')
-document.body.style.backgroundColor = "white"
+
 styleHoroButton.addEventListener('click', function(input) {
+  textBox2.style.display = textBox2.style.display === "block" ? "none" : "none"
   fetch('http://localhost:3000/' + latitude + '/' + longitude)
     .then(response => response.json())
     .then(coordinates => {
       var matchWords = coordinates['hourly']['data'][0].icon
-      //console.log(matchWords)
+      console.log(matchWords)
       var cloudy = matchWords.match(/cloudy/i)
       var rain = matchWords.match(/rain/i)
       var sunny = matchWords.match(/sunny/i)
       var hot = matchWords.match(/hot/i)
       var humid = matchWords.match(/humid/i)
       var wind = matchWords.match(/wind/i)
+
 
       if (cloudy) {
         textBox.innerHTML = `A little Cloud Wont Ruin Your Day! Get Out There And Try New Colors! You Never Know What May Compliment You!`
@@ -195,26 +201,26 @@ styleHoroButton.addEventListener('click', function(input) {
         textBox.innerHTML = `Stickiness! No! Always Carry Some Blotting Sheets To Keep That "Shine" From Preventing Your Shine!`
       } else if (wind) {
         textBox.innerHTML = `Nothing Beats Confidence! So Let Your Hair Down And Let Your Hair Blow In The Wind Like Beyonce!`
+      } else {
+        textBox.innerHTML = `Any Day is a good day to try something new!`
       }
     })
 })
 
-// var styleInspoButton = document.querySelector('button[name="inspobutton"]')
-//console.log(styleInspoButton)
+
 var inspoSubButtons = document.querySelector('.inspoSubButtons')
-//console.log(inspoSubButtons)
+
 var secondDayButton = document.querySelector('button[name="secondDayButton"]')
-//console.log(secondDayButton)
+
 var secondNightButton = document.querySelector('button[name="secondNightButton"]')
-//console.log(secondNightButton)
+
 var mainContent = document.querySelector('.main-content')
-//console.log(mainContent)
+
 
 
 
 function myFunc() {
-  // secondDayButton.style.display = secondDayButton.style.display === "none" ? "block" : "none"
-
+  textBox2.style.display = textBox2.style.display === "block" ? "none" : "none"
   textBox.style.display = textBox.style.display === "none" ? "block" : "none"
   dayInspoButton.style.display = dayInspoButton.style.display === "none" ? "block" : "none";
   nightInspoButton.style.display = nightInspoButton.style.display === "none" ? "block" : "none";

@@ -44,7 +44,7 @@ width: 200px;
   height: 100px;
   padding:0px;
   display: inline;
-  padding-left: 25vw;
+  padding-left: 21vw;
 }
 
 .textBox {
@@ -56,7 +56,7 @@ width: 200px;
 
 .inspoSubButtons {
   color: black;
-  padding-left: 26vw;
+  padding-left: 22vw;
   padding-top: 15vw;
   padding-bottom: 5vw;
 }
@@ -95,7 +95,8 @@ button:hover {
 
 .main-content {
   height: 100vh;
-  padding-top: 12vh;
+  padding-top: 5vh;
+  padding-bottom: 2vh;
 }
 
 .newButtonStyle {
@@ -128,6 +129,25 @@ form {
   text-shadow: 2px 2px 2px white;
 }
 
-/* .carousel-inner {
-  pause: 'hover'
+.textBox2 {
+  background-color: black;
+  color: white;
+  font-weight:lighter;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 100px 100px 100px 100px;
+}
+
+.weatherDisplay {
+  padding-right: 80px;
+}
+
+
+/* .carousel-inner > .item {
+    position: relative;
+    display: none;
+    -webkit-transition: 0.4s ease-in-out left;
+    -moz-transition: 0.4s ease-in-out left;
+    -o-transition: 0.4s ease-in-out left;
+    transition: 0.4s ease-in-out left;
 } */
