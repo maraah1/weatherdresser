@@ -1,9 +1,20 @@
+<<<<<<< Updated upstream
 var dayInspoButton = document.querySelector('button[name="dayInspoButton"]')
 var nightInspoButton = document.querySelector('button[name="nightInspoButton"]')
 var secondDayButton = document.querySelector('button[name="secondDayButton"]')
 var secondNightButton = document.querySelector('button[name="secondNightButton"]')
 var dayPics = document.querySelector('.day_inspoPics')
 var nightPics = document.querySelector('.night_inspoPics')
+=======
+let dayInspoButton = document.querySelector('button[name="dayInspoButton"]')
+let nightInspoButton = document.querySelector('button[name="nightInspoButton"]')
+let secondDayButton = document.querySelector('button[name="secondDayButton"]')
+let secondNightButton = document.querySelector('button[name="secondNightButton"]')
+let dayPics = document.querySelector('.day_inspoPics')
+let nightPics = document.querySelector('.night_inspoPics')
+
+
+>>>>>>> Stashed changes
 
 let cities = {
   "new_york": {
@@ -45,6 +56,7 @@ let cities = {
 
 
 
+<<<<<<< Updated upstream
 var name = window.location.search.split('?')[1].split('&')[0].split('=')[1]
 var incoming_city = window.location.search.split('?')[1].split('&')[1].split('=')[1].toLowerCase()
 var parsed_city = incoming_city.replace(/\+/ig, "_");
@@ -53,6 +65,13 @@ var latitude = cities[parsed_city].lat
 var longitude = cities[parsed_city].lng
 var state = cities[parsed_city].state
 
+=======
+let name = window.location.search.split('?')[1].split('&')[0].split('=')[1]
+let incoming_city = window.location.search.split('?')[1].split('&')[1].split('=')[1].toLowerCase()
+let parsed_city = incoming_city.replace(/\+/ig, "_");
+let latitude = cities[parsed_city].lat
+let longitude = cities[parsed_city].lng
+>>>>>>> Stashed changes
 
 dayInspoButton.style.display = "none"
 nightInspoButton.style.display = "none"
@@ -64,7 +83,11 @@ secondDayButton.style.display = "none"
 fetchApi()
 
 function calcDay(coordinates) {
+<<<<<<< Updated upstream
   var dailyData = coordinates['hourly']['data']
+=======
+  let dailyData = coordinates['hourly']['data']
+>>>>>>> Stashed changes
 
   const currentTimeInHours = new Date(dailyData[0].time * 1000).getHours();
 
@@ -73,16 +96,24 @@ function calcDay(coordinates) {
   const dayCalc = 24 + hoursUntilDay
 
   return dayCalc;
+<<<<<<< Updated upstream
 
 }
 
 function calcNight(coordinates) {
   var dailyData = coordinates['hourly']['data']
+=======
+}
+
+function calcNight(coordinates) {
+  let dailyData = coordinates['hourly']['data']
+>>>>>>> Stashed changes
 
   const currentTimeInHours = new Date(dailyData[0].time * 1000).getHours();
 
   const hoursUntilDay = 19 - currentTimeInHours
 
+<<<<<<< Updated upstream
 
   const nightCalc = currentTimeInHours + hoursUntilDay
 
@@ -92,22 +123,37 @@ function calcNight(coordinates) {
 
 function calcNow(coordinates) {
   var dailyData = coordinates['hourly']['data']
+=======
+  const nightCalc = currentTimeInHours + hoursUntilDay
+
+  return nightCalc;
+}
+
+function calcNow(coordinates) {
+  let dailyData = coordinates['hourly']['data']
+>>>>>>> Stashed changes
 
   const currentTimeInHours = new Date(dailyData[0].time * 1000).getHours();
 
   return currentTimeInHours;
 }
 
+<<<<<<< Updated upstream
 var phrase = ''
 var textBox = document.querySelector('.textBox')
+=======
+let phrase = ''
+let textBox = document.querySelector('.textBox')
+
+>>>>>>> Stashed changes
 
 
 function fetchApi(type) {
   fetch('http://localhost:3000/' + latitude + '/' + longitude)
     .then(response => response.json())
     .then(coordinates => {
-      var dailyData = coordinates['hourly']['data']
-      console.log(dailyData)
+      let dailyData = coordinates['hourly']['data']
+
       let calc;
       if (type === "night") {
         calc = calcNight(coordinates)
@@ -142,6 +188,7 @@ function fetchApi(type) {
 }
 var textBox2 = document.querySelector('.textBox2')
 
+<<<<<<< Updated upstream
 jQuery(document).ready(function($) {
   $.ajax({
     url: "http://api.wunderground.com/api/6cda0e3f3058e59b/geolookup/conditions/q/" +
@@ -155,30 +202,45 @@ jQuery(document).ready(function($) {
   });
 });
 
+=======
+>>>>>>> Stashed changes
 
 
-var dayButton = document.querySelector('button[name="dayButton"]')
+let dayButton = document.querySelector('button[name="dayButton"]')
 
 dayButton.addEventListener('click', function() {
   fetchApi("day")
+<<<<<<< Updated upstream
 
 })
 
 
 var nightButton = document.querySelector('button[name="nightButton"]')
+=======
+})
+
+
+let nightButton = document.querySelector('button[name="nightButton"]')
+
+>>>>>>> Stashed changes
 
 nightButton.addEventListener('click', function() {
   fetchApi("night")
 
 })
 
+<<<<<<< Updated upstream
 var styleHoroButton = document.querySelector('button[name="horoButton"]')
+=======
+let styleHoroButton = document.querySelector('button[name="horoButton"]')
+>>>>>>> Stashed changes
 
 styleHoroButton.addEventListener('click', function(input) {
   textBox2.style.display = textBox2.style.display === "block" ? "none" : "none"
   fetch('http://localhost:3000/' + latitude + '/' + longitude)
     .then(response => response.json())
     .then(coordinates => {
+<<<<<<< Updated upstream
       var matchWords = coordinates['hourly']['data'][0].icon
       console.log(matchWords)
       var cloudy = matchWords.match(/cloudy/i)
@@ -187,6 +249,15 @@ styleHoroButton.addEventListener('click', function(input) {
       var hot = matchWords.match(/hot/i)
       var humid = matchWords.match(/humid/i)
       var wind = matchWords.match(/wind/i)
+=======
+      let matchWords = coordinates['hourly']['data'][0].icon
+      let cloudy = matchWords.match(/cloudy/i)
+      let rain = matchWords.match(/rain/i)
+      let sunny = matchWords.match(/sunny/i)
+      let hot = matchWords.match(/hot/i)
+      let humid = matchWords.match(/humid/i)
+      let wind = matchWords.match(/wind/i)
+>>>>>>> Stashed changes
 
 
       if (cloudy) {
@@ -208,6 +279,7 @@ styleHoroButton.addEventListener('click', function(input) {
 })
 
 
+<<<<<<< Updated upstream
 var inspoSubButtons = document.querySelector('.inspoSubButtons')
 
 var secondDayButton = document.querySelector('button[name="secondDayButton"]')
@@ -218,6 +290,20 @@ var mainContent = document.querySelector('.main-content')
 
 
 
+=======
+let inspoSubButtons = document.querySelector('.inspoSubButtons')
+
+let secondDayButton = document.querySelector('button[name="secondDayButton"]')
+
+let secondNightButton = document.querySelector('button[name="secondNightButton"]')
+
+let mainContent = document.querySelector('.main-content')
+
+
+
+
+function myFunc() {
+>>>>>>> Stashed changes
 
 function myFunc() {
   textBox2.style.display = textBox2.style.display === "block" ? "none" : "none"
@@ -227,8 +313,8 @@ function myFunc() {
 }
 
 function dayFunc() {
-  mainContent.classList.add('background-day')
 
+  mainContent.classList.add('background-day')
   dayInspoButton.style.display = dayInspoButton.style.display === "block" ? "none" : "block";
   secondDayButton.style.display = secondDayButton.style.display === "none" ? "block" : "none"
   dayPics.style.display = dayPics.style.display === "none" ? "block" : "none";
@@ -239,6 +325,7 @@ function dayFunc() {
 
 
 function secondDayFunc() {
+
   mainContent.classList.remove('background-day')
   dayInspoButton.style.display = dayInspoButton.style.display === "none" ? "block" : "none";
   nightInspoButton.style.display = nightInspoButton.style.display === "none" ? "block" : "none";
@@ -248,6 +335,7 @@ function secondDayFunc() {
 }
 
 function nightFunc() {
+
   mainContent.classList.add('background-night')
   secondNightButton.style.display = secondNightButton.style.display === "none" ? "block" : "none"
   nightPics.style.display = nightPics.style.display === "none" ? "block" : "none";
@@ -258,6 +346,7 @@ function nightFunc() {
 
 
 function secondNightFunc() {
+
   mainContent.classList.remove('background-night')
   dayInspoButton.style.display = dayInspoButton.style.display === "none" ? "block" : "none";
   nightInspoButton.style.display = nightInspoButton.style.display === "none" ? "block" : "none";
